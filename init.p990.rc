@@ -69,6 +69,11 @@ on post-fs
     mkdir /data/lgdrm 0770 root root
     mkdir /data/wmdrm 0770 root root
 
+   #Permission fixes
+   #Start a permission script because it allows wildcards
+   chmod 0755 /sbin/permission.sh
+   start permission_fix 
+
 on boot
     setprop net.tcp.buffersize.default 4096,87380,196608,4096,16384,110208
     setprop net.tcp.buffersize.wifi 4096,87380,393216,4096,16384,110208
@@ -246,3 +251,6 @@ service glgps /system/bin/glgps -c /system/etc/gps_brcm_conf.xml
     user system
     group net_raw sdcard_rw system
 
+service permission_fix /sbin/permission.sh
+    disabled
+    oneshot
