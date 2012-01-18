@@ -6,6 +6,7 @@ $(call inherit-product, device/lge/star-common/star.mk)
 DEVICE_PACKAGE_OVERLAYS += device/lge/p990/overlay
 
 # Inherit non-open-source blobs.
+$(call inherit-product, frameworks/base/build/phone-hdpi-512-dalvik-heap.mk)
 $(call inherit-product-if-exists, vendor/lge/p990/p990-vendor.mk)
 
 ifeq ($(TARGET_PREBUILT_KERNEL),)
