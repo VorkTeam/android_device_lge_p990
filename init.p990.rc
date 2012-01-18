@@ -1,3 +1,5 @@
+import init.p990.usb.rc
+
 on init
     export TMPDIR /data/local/tmp
     export PHONE_STORAGE /mnt/emmc

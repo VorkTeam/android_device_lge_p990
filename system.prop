@@ -19,6 +19,9 @@ dalvik.vm.dexopt-flags=m=y,u=n
 ro.additionalmounts=/mnt/emmc
 ro.vold.switchablepair=/mnt/sdcard,/mnt/emmc
 
+# USB Mounting
+persist.sys.usb.config=mass_storage,adb
+
 # GSM, WCDMA preferred
 # This appears to be causing "Unknown" network type
 #ro.telephony.default_network=0
