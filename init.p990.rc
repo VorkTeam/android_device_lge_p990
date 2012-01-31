@@ -166,6 +166,16 @@ service lgdrm /system/bin/lgdrmserver
     user root
     group sdcard_rw radio
 
+service dhcpcd_bnep0 /system/bin/dhcpcd -ABKL
+    class main
+    disabled
+    oneshot
+
+service iprenew_bnep0 /system/bin/dhcpcd -n
+    class main
+    disabled
+    oneshot
+
 service dhcpcd_wlan0 /system/bin/dhcpcd -ABKL # LGE_AUTO_IP - enable IPv4LL (DLNA, 2010.10.19)
     class main
     disabled
