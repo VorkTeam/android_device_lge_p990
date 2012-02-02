@@ -1,18 +1,19 @@
 import init.p990.usb.rc
 
-on init
+on early-init
+    start hwprops
+    #setup sdcard and internal
     export TMPDIR /data/local/tmp
     export PHONE_STORAGE /mnt/emmc
     export EXTERNAL_STORAGE /mnt/sdcard
-
 # create mountpoints for storage
     mkdir /mnt/sdcard 0000 system system
     mkdir /mnt/emmc 0000 system system
-
 # Backward compatibility
     symlink /system/bin /bin
     symlink /mnt/sdcard /sdcard
 
+on fs
 #20100722, taein.kim@lge.com, Add external security folder [START]
     mkdir /mnt/extsecure 0700 root root
     mkdir /mnt/extsecure/staging 0700 root root
@@ -30,10 +31,6 @@ on init
     mkdir /lgdrm 0770 system audio
 ## ANDY_END
 
-on early-init
-    start hwprops
-
-on fs
 # mount partitions
     mount ext4 /dev/block/mmcblk0p1 /system wait
     mount ext4 /dev/block/mmcblk0p1 /system ro noatime remount barrier=1 wait
@@ -54,6 +51,7 @@ on post-fs
     chmod 0711 /data/nv
 ## LGE 
 
+on post-fs-data
     chmod 0777 /data/misc/wifi/config_mac       # 20101202 mingi.sung@lge.com [WLAN] AT command - MAC address read/write function
     mkdir /data/audioprop 0777 system system
 # 20100716 mingi.sung@lge.com <make wifi directory> [START]
@@ -71,12 +69,12 @@ on post-fs
     mkdir /data/lgdrm 0770 root root
     mkdir /data/wmdrm 0770 root root
 
-   #Permission fixes
-   #Start a permission script because it allows wildcards
-   chmod 0755 /sbin/permission.sh
-   start permission_fix 
-
 on boot
+    #Permission fixes
+    #Start a permission script because it allows wildcards
+    chmod 0755 /sbin/permission.sh
+    start permission_fix
+
     setprop net.tcp.buffersize.default 4096,87380,196608,4096,16384,110208
     setprop net.tcp.buffersize.wifi 4096,87380,393216,4096,16384,110208
     setprop net.tcp.buffersize.umts 4096,87380,393216,4096,16384,110208
