@@ -29,6 +29,11 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_KERNEL):kernel \
     $(LOCAL_PATH)/prebuilt/wireless.ko:system/lib/modules/wireless.ko
 
+PRODUCT_PACKAGES += \
+    lights.p990 \
+    audio.primary.p990 \
+    audio_policy.p990
+
 PRODUCT_NAME := p990
 PRODUCT_DEVICE := p990
 PRODUCT_MODEL := LG Optimus 2X
