@@ -9,7 +9,7 @@ ro.sf.lcd_density=240
 mobiledata.interfaces=vsnet0,vsnet1,vsnet2,vsnet3
 
 # Ril fixes for ics
-ro.telephony.ril.v3=1
+ro.telephony.ril.v3=facilitylock,datacall,signalstrength,icccardstatus
 ro.telephony.call_ring.absent=true
 
 # hold precise GC data, and use SMP
